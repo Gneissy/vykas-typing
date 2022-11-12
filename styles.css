@@ -1,8 +1,9 @@
                             /*Tag Selectors*/
 body{
   margin: 0;
-  background-image: url("images/vykasBackgroundImage.png");
+  background-image: url("images/vvaykas.png");
   background-repeat: no-repeat;
+  background-size: cover;
   text-align: center;
   background-color: #0d1117;
 }

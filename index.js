@@ -38,12 +38,12 @@ function kivilcim(){
       // Makes the first button yellow
       $(".btn"+k).addClass("yellowBackground");
       $(".btn"+k).animate({marginTop: "-=30", width:50}, {duration:200});
-      $(".successFailure").animate({opacity:0},{duration: 300});
+      $(".successFailure").animate({opacity:0, fontSize:0},{duration: 300});
       nextStep();
     }
   });
 }
-$(".successFailure").animate({opacity:1},{duration: 300}); // "Press Any Key to Start" activated
+$(".successFailure").animate({opacity:1, fontSize:"3rem"},{duration: 300}); // "Press Any Key to Start" activated
 kivilcim();
 
 // Each keydown
@@ -60,16 +60,16 @@ function nextStep(){
       setTimeout(function(){
         $(".btn"+(k-1)).removeClass("yellowBackground"); // Removing yellow background when current button passed
       },1);
-      var sound = new Audio ("audio/success.mp3"); // Success Audio when succeeded
+      var sound = new Audio ("audio/vykasSuccess"+k+".mp3"); // Success Audio when succeeded
       sound.play();
       imageAdd(k);
       k++;
       if(k===8){
         $("h2").text("Success!"); // Changes h2's text to "Success!"
         $("h2").removeClass("failure"); // Changes h2's shadow color to blue
-        $("h2").animate({opacity:1},{duration:200}); // "Success" is visible
+        $("h2").animate({opacity:1, fontSize:"4rem"},{duration:200}); // "Success" is visible
         setTimeout(function(){
-          $("h2").animate({opacity:0},{duration:200}); // "Success" is not visible
+          $("h2").animate({opacity:0, fontSize:0},{duration:200}); // "Success" is not visible
           restartGame();
         },500);
       }
@@ -79,9 +79,11 @@ function nextStep(){
       $(".btn"+k).addClass("redBackground"); // Adding red background instead
       $("h2").text("Failed"); // Changes h2's text to "Failed"
       $("h2").addClass("failure"); // Changes h2's shadow color to red
-      $("h2").animate({opacity:1},{duration:200}); // "Success" is visible
+      $("h2").animate({opacity:1, fontSize:"4rem"},{duration:200}); // "Success" is visible
+      var sound = new Audio ("audio/vykasFailure.mp3"); // Failure Audio when failed
+      sound.play();
       setTimeout(function(){
-        $("h2").animate({opacity:0},{duration:200}); // "Success" is not visible
+        $("h2").animate({opacity:0, fontSize:0},{duration:200}); // "Success" is not visible
         restartGame();
       },500);
     }
