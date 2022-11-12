@@ -1,9 +1,10 @@
 //Geliştirmek için yapılacaklar:
 // 1+ Mevcut tuş margin-bottom ile (veya lower margin-top ile) yükseltilecek.
 // 2 Ses efektleri kaliteli hale gelecek.
-// 3 Success ve Fail işaret ve sesleri eklenecek.
+// 3+ Success ve Fail işaretleri Eklenecek
 // 4+ Mevcut tuş sarımsı şekilde parlayacak.
-// 5 Navbar Eklenecek
+// 5? Navbar Eklenecek
+// 6+ Başlangıca "Press any key to start" eklenecek.
 
 
 // Default Variables
@@ -37,11 +38,12 @@ function kivilcim(){
       // Makes the first button yellow
       $(".btn"+k).addClass("yellowBackground");
       $(".btn"+k).animate({marginTop: "-=30", width:50}, {duration:200});
-      // $(".btn"+(k+1)).addClass("currentButtonHeight");
+      $(".successFailure").animate({opacity:0},{duration: 300});
       nextStep();
     }
   });
 }
+$(".successFailure").animate({opacity:1},{duration: 300}); // "Press Any Key to Start" activated
 kivilcim();
 
 // Each keydown
