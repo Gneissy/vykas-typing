@@ -56,8 +56,8 @@ body{
   padding: 2% 3% 0;
 }
 .nav-link{
-    color: white;
-    text-shadow: -0.5px 0 green, 0 0.5px green, 0.5px 0 green, 0 -0.5px green;
+  color: white;
+  text-shadow: -0.5px 0 green, 0 0.5px green, 0.5px 0 green, 0 -0.5px green;
 }
 
       /* General */
