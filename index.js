@@ -1,26 +1,22 @@
-//Geliştirmek için yapılacaklar:
-// 1+ Mevcut tuş margin-bottom ile (veya lower margin-top ile) yükseltilecek.
-// 2 Ses efektleri kaliteli hale gelecek.
-// 3+ Success ve Fail işaretleri Eklenecek
-// 4+ Mevcut tuş sarımsı şekilde parlayacak.
-// 5? Navbar Eklenecek
-// 6+ Başlangıca "Press any key to start" eklenecek.
 
-
-// Default Variables
+        // Default Variables
 var keySeries = [];
 var isStarted = false;
+var k = 1;
 
-// Random Letter Generation
-function randomLetterGenerator(){
+        // Spark
+$(".successFailure").animate({opacity:1, fontSize:"3rem"},{duration: 300}); // "Press Any Key to Start" activated
+kivilcim();
+
+        // Functions
+function randomLetterGenerator(){ // Random Letter Generation
   var letters = ["Q","W","E","A","S","D"];
   randomNumber = Math.floor(Math.random()*6);
   var randomLetter = letters[randomNumber];
   return randomLetter;
 }
 
-// Random 7 letters
-function randomSeries(){
+function randomSeries(){ // Random 7 letters assigned to keySeries array
   for (var i=1; i<9; i++){
       keySeries.push(randomLetterGenerator());
       for (var j=0; j<8; j++){
@@ -29,30 +25,24 @@ function randomSeries(){
   }
 }
 
-// Starting the game
-function kivilcim(){
+function kivilcim(){ // Starting the game
   $("body").keydown(function(event){
     if(isStarted == false){
       isStarted = true;
       randomSeries();
-      // Makes the first button yellow
-      $(".btn"+k).addClass("yellowBackground");
-      $(".btn"+k).animate({marginTop: "-=30", width:50}, {duration:200});
-      $(".successFailure").animate({opacity:0, fontSize:0},{duration: 300});
+      $(".btn"+k).addClass("yellowBackground"); // Makes the first button yellow
+      $(".btn"+k).animate({marginTop: "-=30", width:50}, {duration:200}); // Rises first button for 30px
+      $(".successFailure").animate({opacity:0, fontSize:0},{duration: 300}); // "Press any key to start" is now invisible
       nextStep();
     }
   });
 }
-$(".successFailure").animate({opacity:1, fontSize:"3rem"},{duration: 300}); // "Press Any Key to Start" activated
-kivilcim();
 
-// Each keydown
-var k = 1;
-function nextStep(){
+function nextStep(){ // Pressing button process is pressed is handled by this function
   $("body").keydown(function (event){
     var pressedKey = event.key;
-    pressedKey = pressedKey.toUpperCase();
-    if(pressedKey === keySeries[k]){
+    pressedKey = pressedKey.toUpperCase(); // Upper-lower case not mattering anymore
+    if(pressedKey === keySeries[k]){ // When keypress is succeeded:
       $(".btn"+k).addClass("pressAnimation"); // Greyish background for passed button
       $(".btn"+(k+1)).addClass("yellowBackground"); // Yellow background on Current Button
       $(".btn"+(k+1)).animate({marginTop: "-=30", width:50}, {duration:200}); // Rising animation for current button
@@ -90,8 +80,7 @@ function nextStep(){
   });
 }
 
-// Starting over
-function restartGame(){
+function restartGame(){ // Starting over
   k=1; // Reseting all loops
   i=1; // Reseting all loops
   j=0; // Reseting all loops
@@ -105,8 +94,7 @@ function restartGame(){
   $(".btn"+(k)).animate({marginTop: "-=30", width:50}, {duration:200}); // Rise animation of the first letter of the first challange
 }
 
-// Poping star when pressing is succeeded
-function imageAdd(k){
+function imageAdd(k){ // Poping star when pressing is succeeded
   $(".btn"+k+ " img").addClass("star-visible");
   setTimeout(function(){
     $(".btn"+k+ " img").removeClass("star-visible");
